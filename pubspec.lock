@@ -8,6 +8,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.2"
+  awesome_notifications:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: release-0-7-0
+      resolved-ref: c58fe317b3b05eec0fc96fc8d3161ad9723d32c5
+      url: "https://github.com/rafaelsetragni/awesome_notifications.git"
+    source: git
+    version: "0.7.0-beta.6"
   boolean_selector:
     dependency: transitive
     description:
@@ -74,6 +83,13 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: transitive
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   lints:
     dependency: transitive
     description:
@@ -109,6 +125,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.1"
+  platform:
+    dependency: transitive
+    description:
+      name: platform
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.0"
   sky_engine:
     dependency: transitive
     description: flutter
@@ -165,3 +188,4 @@ packages:
     version: "2.1.2"
 sdks:
   dart: ">=2.17.6 <3.0.0"
+  flutter: ">=2.0.4"
