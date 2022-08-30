@@ -16,12 +16,24 @@ Future<void> main() async {
         channelDescription: NotificationConfigEnv.channelDescription,
         defaultColor: Colors.red,
         ledColor: Colors.white,
-      )
+      ),
+      NotificationChannel(
+        channelGroupKey: NotificationConfigEnv.ignoreChannelGroupKey,
+        channelKey: NotificationConfigEnv.ignoreChannelKey,
+        channelName: NotificationConfigEnv.ignoreChannelName,
+        channelDescription: NotificationConfigEnv.ignoreChannelDescription,
+        defaultColor: Colors.red,
+        ledColor: Colors.white,
+      ),
     ],
     channelGroups: [
       NotificationChannelGroup(
         channelGroupKey: NotificationConfigEnv.channelGroupKey,
         channelGroupName: NotificationConfigEnv.channelGroupName,
+      ),
+      NotificationChannelGroup(
+        channelGroupKey: NotificationConfigEnv.ignoreChannelGroupKey,
+        channelGroupName: NotificationConfigEnv.ignoreChannelGroupName,
       ),
     ],
     debug: true,
@@ -75,11 +87,33 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
-    AwesomeNotifications().isNotificationAllowed().then((isAllowed) {
-      if (!isAllowed) {
-        AwesomeNotifications().requestPermissionToSendNotifications();
-      }
-    });
+    AwesomeNotifications().isNotificationAllowed().then(
+      (isAllowed) async {
+        if (!isAllowed) {
+          final allowed = await AwesomeNotifications()
+              .requestPermissionToSendNotifications();
+          if (allowed) {
+            AwesomeNotifications().createNotification(
+              content: NotificationContent(
+                id: UniqueKey().hashCode,
+                channelKey: NotificationConfigEnv.ignoreChannelKey,
+                displayOnForeground: false,
+                displayOnBackground: false,
+              ),
+            );
+          }
+        } else {
+          AwesomeNotifications().createNotification(
+            content: NotificationContent(
+              id: UniqueKey().hashCode,
+              channelKey: NotificationConfigEnv.ignoreChannelKey,
+              displayOnForeground: false,
+              displayOnBackground: false,
+            ),
+          );
+        }
+      },
+    );
     super.initState();
   }
 
